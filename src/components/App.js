@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import Player from './Player';
+import Result from './Result';
 import "./App.css";
 
 class App extends Component {
@@ -11,6 +12,7 @@ class App extends Component {
     return (
       <div className="app-container">
         <Player className="column" name="Player 1" />
+        <Result className="column" />
         <Player className="column" name="Player 2" />
       </div>
     );
