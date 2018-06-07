@@ -19,6 +19,8 @@ describe("App", function() {
     it('contains a Player', () => {
       let player = ReactTestUtils.findRenderedComponentWithType(this.instance, Player);
       expect(player).toBeDefined();
+
+      expect(player.props.name).toBe("Player 1");
     });
   })
 });

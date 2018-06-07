@@ -10,7 +10,7 @@ class Player extends Component {
 
     return (
       <div>
-        <h2>Player 1</h2>
+        <h2>{this.props.name}</h2>
         <div className="buttonList">
           {buttonList}
         </div>
