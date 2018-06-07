@@ -21,5 +21,10 @@ describe("Button", function() {
       let button = ReactTestUtils.findRenderedDOMComponentWithTag(this.instance, "button");
       expect(button.textContent).toBe(this.instance.props.value);
     });
+
+    it('contains a class', () => {
+      let button = ReactTestUtils.findRenderedDOMComponentWithTag(this.instance, "button");
+      expect(button).toHaveClass("button");
+    });
   })
 });
