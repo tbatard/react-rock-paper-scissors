@@ -16,11 +16,12 @@ describe("App", function() {
       this.instance = ReactTestUtils.renderIntoDocument(<App />);
     });
 
-    it('contains a Player', () => {
-      let player = ReactTestUtils.findRenderedComponentWithType(this.instance, Player);
-      expect(player).toBeDefined();
+    it('contains 2 Players', () => {
+      let players = ReactTestUtils.scryRenderedComponentsWithType(this.instance, Player);
+      expect(players.length).toBe(2);
 
-      expect(player.props.name).toBe("Player 1");
+      expect(players[0].props.name).toBe("Player 1");
+      expect(players[1].props.name).toBe("Player 2");
     });
   })
 });

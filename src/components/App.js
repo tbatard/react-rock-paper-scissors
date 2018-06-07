@@ -9,7 +9,10 @@ class App extends Component {
 
   render() {
     return (
-      <Player name="Player 1" />
+      <div>
+        <Player name="Player 1" />
+        <Player name="Player 2" />
+      </div>
     );
   }
 }
