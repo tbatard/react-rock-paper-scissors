@@ -9,7 +9,7 @@ class Player extends Component {
     );
 
     return (
-      <div>
+      <div className={this.props.className}>
         <h2>{this.props.name}</h2>
         <div className="buttonList">
           {buttonList}

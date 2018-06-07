@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import ReactTestUtils from 'react-dom/test-utils';
 import App from './../../src/components/App';
 import Player from './../../src/components/Player';
+import ShallowRenderer from 'react-test-renderer/shallow';
 
 describe("App", function() {
   it('renders without crashing', () => {
@@ -13,15 +14,26 @@ describe("App", function() {
 
   describe("Content", function() {
     beforeEach(() => {
-      this.instance = ReactTestUtils.renderIntoDocument(<App />);
+      const renderer = new ShallowRenderer();
+      renderer.render(<App />);
+      this.instance = renderer.getRenderOutput();
+    });
+
+    it('contains a div container with a class', () => {
+      expect(this.instance.type).toBe("div");
+      expect(this.instance.props.className).toBe("app-container");
     });
 
     it('contains 2 Players', () => {
-      let players = ReactTestUtils.scryRenderedComponentsWithType(this.instance, Player);
-      expect(players.length).toBe(2);
+      expect(this.instance.props.children.length).toBe(2);
 
-      expect(players[0].props.name).toBe("Player 1");
-      expect(players[1].props.name).toBe("Player 2");
+      expect(this.instance.props.children[0].type).toBe(Player);
+      expect(this.instance.props.children[0].props.className).toBe("column");
+      expect(this.instance.props.children[0].props.name).toBe("Player 1");
+
+      expect(this.instance.props.children[1].type).toBe(Player);
+      expect(this.instance.props.children[1].props.className).toBe("column");
+      expect(this.instance.props.children[1].props.name).toBe("Player 2");
     });
   })
 });

@@ -1,3 +1,10 @@
-.buttonList {
-  column-count: 1;
+.app-container {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.column {
+  width: 50%;
+  float: left;
 }

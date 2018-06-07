@@ -14,7 +14,7 @@ describe("Player", function() {
 
   describe("Content", function() {
     beforeEach(() => {
-      this.instance = ReactTestUtils.renderIntoDocument(<Player name="Player X" />);
+      this.instance = ReactTestUtils.renderIntoDocument(<Player className="testClass" name="Player X" />);
     });
 
     it('contains a Button for each values', () => {
@@ -34,6 +34,13 @@ describe("Player", function() {
       let h2 = ReactTestUtils.findRenderedDOMComponentWithTag(this.instance, "h2");
       expect(h2).toBeDefined();
       expect(h2.textContent).toBe("Player X");
+    });
+
+    it('has a class', () => {
+      expect(this.instance.props.className).toBe("testClass");
+
+      let div = ReactTestUtils.findRenderedDOMComponentWithClass(this.instance, "testClass");
+      expect(div).toBeDefined();
     });
   })
 });
