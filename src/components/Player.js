@@ -10,7 +10,10 @@ class Player extends Component {
 
     return (
       <div>
-        {buttonList}
+        <h2>Player 1</h2>
+        <div className="buttonList">
+          {buttonList}
+        </div>
       </div>
     );
   }

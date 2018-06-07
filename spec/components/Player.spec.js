@@ -23,9 +23,15 @@ describe("Player", function() {
     });
 
     it('contains a div for the buttonList', () => {
-      let div = ReactTestUtils.findRenderedDOMComponentWithTag(this.instance, "div");
+      let div = ReactTestUtils.findRenderedDOMComponentWithClass(this.instance, "buttonList");
       expect(div).toBeDefined();
       expect(div.children.length).toBe(Object.values(ButtonValues).length);
+    });
+
+    it('has a name', () => {
+      let h2 = ReactTestUtils.findRenderedDOMComponentWithTag(this.instance, "h2");
+      expect(h2).toBeDefined();
+      expect(h2.textContent).toBe("Player 1");
     });
   })
 });
