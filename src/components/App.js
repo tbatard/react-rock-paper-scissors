@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
-import Button from './Button';
-import { ButtonValues } from './Button';
+import Player from './Player';
 import "./App.css";
 
 class App extends Component {
@@ -9,14 +8,8 @@ class App extends Component {
   }
 
   render() {
-    let buttonList = Object.keys(ButtonValues).map((value) =>
-          <Button key={value} value={value} />
-    );
-
     return (
-      <div className="buttonList">
-        {buttonList}
-      </div>
+      <Player />
     );
   }
 }
