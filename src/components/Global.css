@@ -1,0 +1,20 @@
+.row {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.column {
+  float: left;
+  margin: 0 30px;
+}
+
+.left.column {
+  margin-left: 0;
+  text-align: left;
+}
+
+.right.column {
+  margin-right: 0;
+  text-align: right;
+}

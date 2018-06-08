@@ -12,7 +12,19 @@ describe("Result", function() {
 
   describe("Content", function() {
     beforeEach(() => {
-      this.instance = ReactTestUtils.renderIntoDocument(<Result className="testClass" />);
+      this.instance = ReactTestUtils.renderIntoDocument(<Result value="testValue" className="testClass" />);
+    });
+
+    it('has a value', () => {
+      expect(this.instance.props.value).toBe("testValue");
+
+      let divs = ReactTestUtils.scryRenderedDOMComponentsWithTag(this.instance, "div");
+      expect(divs[0].textContent).toBe("testValue");
+    });
+
+    it('has a default class', () => {
+      let div = ReactTestUtils.findRenderedDOMComponentWithClass(this.instance, "Result");
+      expect(div).toBeDefined();
     });
 
     it('has a class', () => {
@@ -21,10 +33,5 @@ describe("Result", function() {
       let div = ReactTestUtils.findRenderedDOMComponentWithClass(this.instance, "testClass");
       expect(div).toBeDefined();
     });
-
-    it('has a title', () => {
-      let h2 = ReactTestUtils.findRenderedDOMComponentWithTag(this.instance, "h2");
-      expect(h2.textContent).toBe("Result");
-    });
-  })
+  });
 });

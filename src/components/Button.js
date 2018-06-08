@@ -9,9 +9,13 @@ export const ButtonValues = {
 }
 
 class Button extends Component {
+  handleClick = (event) => {
+    this.props.onButtonClick(this.props.value);
+  }
+
   render() {
     return (
-      <button className="button">{this.props.value}</button>
+      <button onClick={this.handleClick} className="button">{this.props.value}</button>
     );
   }
 }

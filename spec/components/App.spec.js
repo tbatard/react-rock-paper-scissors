@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import ReactTestUtils from 'react-dom/test-utils';
 import App from './../../src/components/App';
 import Player from './../../src/components/Player';
-import Result from './../../src/components/Result';
+import Results from './../../src/components/Results';
 import ShallowRenderer from 'react-test-renderer/shallow';
 
 describe("App", function() {
@@ -15,33 +15,40 @@ describe("App", function() {
 
   describe("Content", function() {
     beforeEach(() => {
-      const renderer = new ShallowRenderer();
-      renderer.render(<App />);
-      this.instance = renderer.getRenderOutput();
+      this.instance = ReactTestUtils.renderIntoDocument(<App />);
     });
 
-    it('contains a div container with a class', () => {
-      expect(this.instance.type).toBe("div");
-      expect(this.instance.props.className).toBe("app-container");
+    it('contains a div container with a class row', () => {
+      expect(this.instance._reactInternalFiber.child.type).toBe("div");
+      expect(this.instance._reactInternalFiber.child.stateNode.className).toBe("row");
+    });
+
+    it('has an empty state for both players', () => {
+      this.instance = ReactTestUtils.renderIntoDocument(<App />);
+      expect(this.instance.state.player1Value).toBe("");
+      expect(this.instance.state.player2Value).toBe("");
     });
 
     it('contains 2 columns Player', () => {
-      expect(this.instance.props.children.length).toBe(3);
+      let playerArray = ReactTestUtils.scryRenderedComponentsWithType(this.instance, Player);
+      expect(playerArray.length).toBe(2);
 
-      expect(this.instance.props.children[0].type).toBe(Player);
-      expect(this.instance.props.children[0].props.className).toBe("column");
-      expect(this.instance.props.children[0].props.name).toBe("Player 1");
+      let player1 = playerArray[0];
+      expect(player1.props.className).toBe("column");
+      expect(player1.props.name).toBe("Player 1");
+      expect(player1.props.onButtonClick).toBe(this.instance.handlePlayer1ButtonClick);
 
-      expect(this.instance.props.children[2].type).toBe(Player);
-      expect(this.instance.props.children[2].props.className).toBe("column");
-      expect(this.instance.props.children[2].props.name).toBe("Player 2");
+      let player2 = playerArray[1];
+      expect(player2.props.className).toBe("column");
+      expect(player2.props.name).toBe("Player 2");
+      expect(player2.props.onButtonClick).toBe(this.instance.handlePlayer2ButtonClick);
     });
 
     it('contains a column results', () => {
-      expect(this.instance.props.children.length).toBe(3);
+      let resultsArray = ReactTestUtils.scryRenderedComponentsWithType(this.instance, Results);
 
-      expect(this.instance.props.children[1].type).toBe(Result);
-      expect(this.instance.props.children[1].props.className).toBe("column");
+      expect(resultsArray.length).toBe(1);
+      expect(resultsArray[0].props.className).toBe("column");
     });
   })
 });

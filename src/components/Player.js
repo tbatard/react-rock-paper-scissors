@@ -4,8 +4,8 @@ import { ButtonValues } from './Button';
 
 class Player extends Component {
   render() {
-    let buttonList = Object.keys(ButtonValues).map((value) =>
-          <Button key={value} value={value} />
+    let buttonList = Object.keys(ButtonValues).map((value, i) =>
+          <Button key={i} onButtonClick={this.props.onButtonClick} value={value} />
     );
 
     return (

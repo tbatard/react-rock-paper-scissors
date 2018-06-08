@@ -13,13 +13,22 @@ describe("Player", function() {
   });
 
   describe("Content", function() {
+    let handleClick = (event) => {};
+
     beforeEach(() => {
-      this.instance = ReactTestUtils.renderIntoDocument(<Player className="testClass" name="Player X" />);
+      this.instance = ReactTestUtils.renderIntoDocument(<Player onButtonClick={handleClick} className="testClass" name="Player X" />);
     });
 
     it('contains a Button for each values', () => {
       let buttons = ReactTestUtils.scryRenderedComponentsWithType(this.instance, Button);
       expect(buttons.length).toBe(Object.values(ButtonValues).length);
+
+      for (let i = 0; i < Object.values(ButtonValues).length; i++) {
+        let button = buttons[i];
+        expect(button._reactInternalFiber.key).toBe('' + i);
+        expect(button.props.onButtonClick).toBe(handleClick);
+        expect(button.props.value).toBe(Object.values(ButtonValues)[i].toLowerCase());
+      }
     });
 
     it('contains a div for the buttonList', () => {
@@ -41,6 +50,10 @@ describe("Player", function() {
 
       let div = ReactTestUtils.findRenderedDOMComponentWithClass(this.instance, "testClass");
       expect(div).toBeDefined();
+    });
+
+    it('has an onButtonClick props', () => {
+      expect(this.instance.props.onButtonClick).toBe(handleClick);
     });
   })
 });

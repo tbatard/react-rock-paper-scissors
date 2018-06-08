@@ -1,0 +1,19 @@
+.Result {
+  display: inline-block;
+  width: 100px;
+  height: 40px;
+  line-height: 40px;
+  color: black;
+  font-weight: bold;
+  margin: 0 10px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.Result.success {
+  background-color: #74d578;
+}
+
+.Result.fail {
+  background-color: #ee9b81;
+}
