@@ -28,10 +28,16 @@ describe("Results", function() {
       expect(div).toBeDefined();
     });
 
-    it('has a title with inline style', () => {
+    it('has a title with inline style and default text', () => {
       let h2 = ReactTestUtils.findRenderedDOMComponentWithTag(this.instance, "h2");
       expect(h2.textContent).toBe("Result");
       expect(h2.style._values).toEqual({'text-align': 'center'});
+    });
+
+    it('has a title that uses props', () => {
+      this.instance = ReactTestUtils.renderIntoDocument(<Results result="New Result" />);
+      let h2 = ReactTestUtils.findRenderedDOMComponentWithTag(this.instance, "h2");
+      expect(h2.textContent).toBe("New Result");
     });
 
     it('constains a div.row that contains 2 children', () => {
@@ -40,7 +46,7 @@ describe("Results", function() {
       expect(div.children.length).toBe(2);
     });
 
-    it('contains 2 Results, one per player, and has a class column', () => {
+    it('contains 2 Result, one per player, and has a class column', () => {
       let results = ReactTestUtils.scryRenderedComponentsWithType(this.instance, Result);
 
       expect(results.length).toBe(2);

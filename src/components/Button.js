@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import "./Button.css";
 
 export const ButtonValues = {
-  rock: "Rock",
-  paper: "Paper",
-  scissors: "Scissors"
+  rock: "rock",
+  paper: "paper",
+  scissors: "scissors"
 }
 
 class Button extends Component {
